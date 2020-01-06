@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class CartInfoDTO {
 
-//フィールド
+    //フィールド
 	private int productId;
 	private String productName;
 	private String productNameKana;
@@ -19,7 +19,7 @@ public class CartInfoDTO {
 	private String userId;
 	private int productCount;
 
-//getterとsetter
+    //getterとsetter
 	public int getProductId() {
 	    return productId;
 	}
@@ -35,6 +35,7 @@ public class CartInfoDTO {
 	public void setProductName(String productName) {
 	    this.productName = productName;
 	}
+    
 	public String getProductNameKana() {
 	    return productNameKana;
 	}

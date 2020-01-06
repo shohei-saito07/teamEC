@@ -4,33 +4,31 @@
 <!DOCTYPE>
 <html>
 <head>
-	<meta charset=UTF-8>
-	<link rel="stylesheet" href="./css/style.css">
-	<link rel="stylesheet" href="./css/table.css">
-
-	<script type="text/javascript">
-		function checkValue(){
-			var checkList = document.getElementsByClassName("checkList");
-			var checkFlg = 0;
-			for (var i = 0;  i<checkList.length;  i++) {
-				if(checkList[i].checked) {
-					checkFlg = 1;
-					break;
-				}
-			}
-			if (checkFlg == 1) {
-		    	document.getElementById('deleteButton').disabled="";
-			} else {
-				document.getElementById('deleteButton').disabled="true";
-			}
-		}
-	</script>
-	<title>カート画面</title>
+<meta charset=UTF-8>
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/table.css">
+<script type="text/javascript">
+    function checkValue(){
+        var checkList = document.getElementsByClassName("checkList");
+        var checkFlg = 0;
+        for (var i = 0;  i<checkList.length;  i++) {
+            if(checkList[i].checked) {
+                checkFlg = 1;
+                break;
+            }
+        }
+        if (checkFlg == 1) {
+            document.getElementById('deleteButton').disabled="";
+        } else {
+            document.getElementById('deleteButton').disabled="true";
+        }
+    }
+</script>
+<title>カート画面</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"/>
 	<script src="./js/setAction.js"></script>
-
 	<div id = "main">
 		<h1>カート画面</h1>
 		<div>
@@ -77,15 +75,13 @@
 			</s:if>
 			<s:if test="cartInfoDTOList.size()>0">
 				<s:form id="form">
-<!-- 					<div class="submit_btn_box"> -->
-						<s:if test="#session.loginFlg==1">
-							<s:submit value="決済" class="submit_btn" onclick="setAction('SettlementConfirmAction')"/>
-						</s:if>
-						<s:else>
-							<s:submit value="決済" class="submit_btn" onclick="setAction('GoLoginAction')"/>
-							<s:hidden name="cartFlg"  value="1"/>
-						</s:else>
-<!-- 					</div> -->
+                    <s:if test="#session.loginFlg==1">
+                        <s:submit value="決済" class="submit_btn" onclick="setAction('SettlementConfirmAction')"/>
+                    </s:if>
+                    <s:else>
+                        <s:submit value="決済" class="submit_btn" onclick="setAction('GoLoginAction')"/>
+                        <s:hidden name="cartFlg"  value="1"/>
+                    </s:else>
 				</s:form>
 			</s:if>
 		</div>

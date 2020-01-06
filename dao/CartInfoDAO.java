@@ -60,10 +60,9 @@ public class CartInfoDAO {
 	//カート商品の合計金額を計算する
 	public int getTotalPrice(String userId) {
 
-		int totalPrice = 0;
-
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
+        int totalPrice = 0;
 
 		String sql = "SELECT  sum(pi.price * ci.product_count) AS total_price FROM product_info AS pi"
 				+ " RIGHT OUTER JOIN cart_info AS ci"
@@ -91,6 +90,7 @@ public class CartInfoDAO {
 
 	//商品の新規追加
 	public int addProduct(String userId, int productId, int productCount) {
+        
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
 		int result = 0;
@@ -103,7 +103,6 @@ public class CartInfoDAO {
 			ps.setString(1, userId);
 			ps.setInt(2, productId);
 			ps.setInt(3, productCount);
-
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -117,9 +116,9 @@ public class CartInfoDAO {
 		return result;
 	}
 
-	//
 	//商品の削除機能
 	public int deleteProduct(String userId, String productId) {
+        
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
 		int result = 0;
@@ -130,9 +129,7 @@ public class CartInfoDAO {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, userId);
 			ps.setString(2, productId);
-
 			result = ps.executeUpdate();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -161,7 +158,7 @@ public class CartInfoDAO {
 			ps.setInt(1, productCount);
 			ps.setString(2, userId);
 			ps.setInt(3, productId);
-			result = ps.executeUpdate();
+			result = ps.executeUpdate();            
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -211,7 +208,6 @@ public class CartInfoDAO {
 
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
-
 		int result = 0;
 
 		String sql = "UPDATE cart_info SET user_id = ?, update_date = now() where user_id = ?";
@@ -238,7 +234,6 @@ public class CartInfoDAO {
 
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
-
 		int result = 0;
 
 		String sql = "UPDATE cart_info SET user_id = ?, update_date = now() where user_id = ? AND product_id = ?";
@@ -262,20 +257,17 @@ public class CartInfoDAO {
 	}
 	//カートの中身をすべて削除する機能
 	public int deleteAll(String UserId) {
+        
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
-
 		int result= 0;
 
 		String sql = "DELETE FROM cart_info WHERE user_id = ?";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-
 			ps.setString(1, UserId);
-
 			result = ps.executeUpdate();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
